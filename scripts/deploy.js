@@ -4,14 +4,14 @@ async function main() {
 
   const nft = await MyToken.deploy();
 
-  await nft.deployed();
+  await nft.waitForDeployment();
 
-  console.log("NFT deployed to:", nft.address);
- 
+  console.log("NFT deployed to:", nft.address, JSON.stringify(nft));
+
   // mint one to yourself!
   const signer0 = await ethers.provider.getSigner(0);
   // update the IPFS CID to be your metadata CID
-  await nft.safeMint(await signer0.getAddress(), "ipfs://QmbCwoJB7g9b86BfEahsjzyzzNx3WEu7Jc1opXWgeTXFgb");
+  await nft.safeMint(await signer0.getAddress(), "ipfs://QmdEimRewkMv88ZcuMh1KKBos55Ecr7y9fjXQ7phc9wNoL");
 
   console.log("NFT Minted!");
 }
